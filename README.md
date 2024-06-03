@@ -14,3 +14,7 @@ git commit -m "first commit"
 git branch -M master
 git remote add origin git@github.com:DorraBenLetayfa/containrize-ezlearning-pipeline-minikube.git
 git push -u origin master
+# build application
+mvn package
+# run the application locally
+java -jar target/platform-0.0.1-SNAPSHOT.jar 
