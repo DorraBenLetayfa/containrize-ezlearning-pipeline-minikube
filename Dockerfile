@@ -1,13 +1,14 @@
 # build stage
-FROM builder-image AS build-stage 
+FROM registry.access.redhat.com/ubi8/openjdk-8:latest AS build-stage 
 WORKDIR /app
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
-COPY src ./src
+COPY --chown=jboss:root /ez-learning/pom.xml /app
+RUN mvn dependency:go-offline
+COPY --chown=jboss:root /ez-learning/src /app/src
+RUN mvn clean package
 
 # run stage
-FROM openjdk:8
-COPY --from=build-stage /path/in/build/stage /path/to/place/in/final/stage
+FROM registry.access.redhat.com/ubi8/openjdk-8:latest
+WORKDIR /app
+COPY --from=build-stage /app/target/*.jar platform.jar
 EXPOSE 8080
-CMD ["java"]
+CMD ["java", "-jar", "platform.jar"]
