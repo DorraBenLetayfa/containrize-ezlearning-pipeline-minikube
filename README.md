@@ -1,7 +1,7 @@
 # containrize-ezlearning-pipeline-minikube
 # configure ssh key for github 
 ssh-keygen -t ed25519 -C "xxxxxx@gmail.com"
-give a passphrase 
+give a passphrase (dorra)
 eval "$(ssh-agent -s)"
 ssh-add /home/dorra/.ssh/gitub_key
 add you public key to github using UI
