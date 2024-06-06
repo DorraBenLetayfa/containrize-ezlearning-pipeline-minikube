@@ -26,6 +26,12 @@ buildah build -t quay.io/dorrabl/learning:latest .
 # run the container using buildah
 podman run -d -p 8080:8080 quay.io/dorrabl/learning:latest
 # deploy mysql on minikube
+#https://kubernetes.io/docs/tasks/run-application/run-single-instance-stateful-application/  
+minikube start   
+minkube dashboard  
+kubectl apply -f https://k8s.io/examples/application/mysql/mysql-pv.yaml -n learning-app  
+kubectl apply -f https://k8s.io/examples/application/mysql/mysql-deployment.yaml -n learning-app  
+kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -n learning-app -- mysql -h mysql -ppassword  
 # deploy application with prod profile on minikube
 # deploy jenkins on minikube
 # deploy sonarqube on minikube
