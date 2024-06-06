@@ -4,7 +4,7 @@ ssh-keygen -t ed25519 -C "xxxxxx@gmail.com"
 give a passphrase (dorra)  
 eval "$(ssh-agent -s)"  
 ssh-add /home/dorra/.ssh/gitub_key  
-create file .ssh/config and include in it the /home/dorra/.ssh/gitub_key 
+create file .ssh/config and include in it the /home/dorra/.ssh/gitub_key   
 add you public key to github using UI  
 ssh -T git@github.com  
 # configure new repo
